@@ -9,9 +9,9 @@ import datetime
 
 camera = PiCamera()
 
-camera.start_preview(alpha=200)
-sleep(10)
-camera.stop_preview()
+# camera.start_preview()
+# sleep(10)
+# camera.stop_preview()
 
 
 def take_photo():
@@ -30,5 +30,7 @@ def take_photo():
 
 
 while True:
+    camera.start_preview()
     take_photo()
     sleep(10)
+    camera.stop_preview()
