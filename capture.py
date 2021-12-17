@@ -9,8 +9,9 @@ from pymongo import MongoClient
 from datetime import datetime
 
 client = MongoClient('mongodb://192.168.1.150/twitcherpi')
-imagesdb = client.images
-birdsdb = client.birds
+db = client.twitcherpi
+# imagesdb = client.images
+# birdsdb = client.birds
 
 camera = PiCamera()
 camera.resolution = (1024, 768)
@@ -27,5 +28,5 @@ def save_image(image):
 
     now = datetime.now()
     date_string = now.isoformat
-    imagesdb.images.insert_ont({"date":date_string, "image":image}) 
+    db.images.insert_one({"date":date_string, "image":image}) 
     
