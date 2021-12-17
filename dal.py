@@ -12,7 +12,7 @@ class ImageDocument():
 
     def __init__(self):
         now = datetime.now()
-        self.__captured_date = now.isoformat
+        self.__captured_date = now.isoformat()
 
     def save_image(self, image):
         self.__image = image
