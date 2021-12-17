@@ -5,7 +5,7 @@
 # Import libraries
 from picamera import PiCamera
 from io import BytesIO
-from dal import DATABASE, ImageDocument
+from dal import ImageDocument
 
 from datetime import datetime
 
