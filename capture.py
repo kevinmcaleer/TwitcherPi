@@ -6,6 +6,11 @@
 from picamera import PiCamera
 from io import BytesIO
 from pymongo import MongoClient
+from datetime import datetime
+
+client = MongoClient('mongodb://192.168.1.150/twitcherpi')
+imagesdb = client.images
+birdsdb = client.birds
 
 camera = PiCamera()
 camera.resolution = (1024, 768)
@@ -19,5 +24,8 @@ def take_picture():
 
 def save_image(image):
     # Save an image to the mongo database
-    test = "hello"
+
+    now = datetime.now()
+    date_string = now.isoformat
+    imagesdb.images.insert_ont({"date":date_string, "image":image}) 
     
