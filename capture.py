@@ -25,3 +25,6 @@ def save_image(image):
     image_document.save_image(image)
 
  
+img = take_picture()
+
+save_image(img)
