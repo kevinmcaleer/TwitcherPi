@@ -54,7 +54,7 @@ class ImageDocument():
         """ Sets the current processed status """
         self.__processed = value
 
-    def load_image():
+    def load_image(self):
         image_record = db.images.find()
         image = image_record['image']
         print(image)
