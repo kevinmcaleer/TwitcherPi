@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block content%}
+    <main class="hero-section">
+      <div class="container">
+
+        <div class="section-content">
+          <h2>Current Capture</h2>
+          <a href="{{ url_for('signup') }}" class="btn-primary">Sign Up</a>
+          <a href="{{ url_for('about') }}" class="btn-secondary">Learn More</a>
+        </div>
+
+        <div class="clearfix"></div>
+
+      </div>
+    </main>
+
+{% endblock%}
