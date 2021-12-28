@@ -19,21 +19,39 @@ context.fillRect(0,0, canvas.width, canvas.height);
 
 let draw_color = "rgba(0, 255, 0, 0.5)";
 let draw_width = "2";
-let is_drawing = false;
+var is_drawing = false;
 
-let current_label = "robin";
-var selections = [];
+var current_label = "";
+let selections = [];
 
 // let label_array = ["sparrow","blackbird","robin","starling","wood pigeon","great tit","blue tit","crow"];
-let label_array = ['none']
-// image loader
+var label_array = ['none']
+
+// cache links to tags in the page
 const image = document.getElementById('source');
 const rects = document.getElementById('rects');
 const remove_button = document.getElementById("remove");
+const labels = document.getElementById('labels');
 
 image.addEventListener('load', e => {
   context.drawImage(image, 0, 0, canvas.height, canvas.width);
 });
+
+function update_current_label(){
+    // rects = document.getElementById('rects');
+    my_index = labels.selectedIndex;
+    if (my_index == -1) {
+        my_index = 1;
+    }
+    
+    var cur_label = labels[my_index].value;
+    return cur_label;
+
+    // Update the current label with whatever is selected
+    // var cur_label = rects[rects.selectedIndex].value;
+}
+
+// current_label = update_current_label();
 
 function change_color(element){
     draw_color = element.style.background;
@@ -68,19 +86,24 @@ function start(event) {
 
 function update_options(){
     var str = "";
+    my_index = selections.selectedIndex;
+    if (my_index == -1) {
+        my_index = 1;
+    }
+    
     for (var item of selections) {
         str += "<option>" + item.label + "</option>";
-    }
+    
     document.getElementById("rects").innerHTML = str;
 }
+}
 
-function draw_selection() {
+function draw_selection(selections) {
     //  draw all the rectangles in the selection array and add text label
     update_options();
-    for (let item in selections) {
-        context.strokeRect(selections[item].x, selections[item].y, selections[item].w, selections[item].h);
-        // rects.append(selections[item].label);
-        // console.log("draw selection" & selections[item].label & selections[item].x);
+    for (let i in selections) {
+        context.strokeRect(selections[i].x, selections[i].y, selections[i].w, selections[i].h);
+        
     }
 }
 
@@ -99,9 +122,6 @@ function draw(event){
         
         context.strokeStyle = draw_color;
         context.lineWidth = draw_width;
-        // context.lineCap = "round";
-        // context.lineJoin = "round"
-        // context.stroke();
         context.fillStyle = draw_color;
         context.strokeStyle = draw_color;
         context.strokeRect(x, y,w-x,h-y);
@@ -111,29 +131,28 @@ function draw(event){
         context.stroke();
         context.closePath();
     }
-    // event.preventDefault();
 }
 
 function stop(event){
     if ( is_drawing ) {
-        // context.stroke();
         context.drawImage(image, 0, 0, canvas.height, canvas.width);
         is_drawing = false;
-        // console.log("stopped");
-        // create a new label to draw
+        
         x = context.startX ;
         y = context.startY ;
         w = event.pageX - canvas.offsetLeft - x;
         h = event.pageY - canvas.offsetTop - y;
 
+        // create a new label to draw
         l = new Label(x, y, w, h);
+
+        // get currently selected label
+        l.label = update_current_label();
         selections.push(l);
         context.strokeRect(x, y,w,h);
-        draw_selection();
+        draw_selection(selections);
         update_options();
-        // update_rects();
     }
-    // event.preventDefault();
 }
 
 function remove_item(event){

@@ -20,26 +20,27 @@
             <div style="display:none;">
                 <img id="source" src="images/birdtable01.jpg" width="300" height="227">
             </div>
-            <script src="main.js"></script>
+            
             <div class="details">
                 <p id="x"></p>
                 <p id="y"></p>
                 <p>Date: 28/12/2021, 10:00:00am</p>
             </div>
-
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
             <div class="row">
                 <div class="list row">
                     <div class="col">
                         <select name="labels" size="5" id="labels">
-                            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-        
+                            
                         </select>
+                        <script src="options.js"></script>
                     </div>
                     <div class="col">
                         <select name="selections" size="5" id="rects">
-                            <option>Default</option>
+                            <option selected>Nothing</option>
                         </select>
                     </div>
+                    <script src="main.js"></script>
                 </div>
                 <div class="row">
                     <div class="col">
@@ -49,6 +50,6 @@
             </div>
         </div>
         
-        <script src="options.js"></script>
+       
     </body>
 </html>
