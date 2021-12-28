@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Image Labeler</h1>
+    <div class="field">
+   
+    <canvas id="canvas"></canvas>
+    
+    <div style="display:none;">
+        <img id="source"
+             src="images/birdtable01.jpg"
+             width="300" height="227">
+      </div>
+      <script src="main.js"></script>
+    <div class="details">
+        <p id="x"></p><p id="y"></p>
+        <p>Date: 28/12/2021, 10:00:00am</p>
+    </div>
+    <div class="list row">
+        <div class="col">
+            <select name="labels" size="5" id="labels">
+            <option>Default</option>
+            </select> 
+        </div>
+        <div class="col">
+            <select name="selections" size="5" id="rects">
+            <option>Default</option>
+            </select> 
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <button>Add</button>
+            <button>Remove</button>
+        </div>
+    </div>
+
+    </div> 
+</body>
+</html>
