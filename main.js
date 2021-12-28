@@ -55,7 +55,7 @@ canvas.addEventListener("mousemove", draw, false);
 canvas.addEventListener("touchend", stop, false);
 canvas.addEventListener("mouseup", stop, false);
 canvas.addEventListener("mouseout", stop, false);
-document.getElementById("remove").addEventListener("click", remove_item);
+// document.getElementById("remove").addEventListener("click", remove_item);
 
 function start(event) {
     is_drawing = true;
@@ -80,7 +80,7 @@ function draw_selection() {
     for (let item in selections) {
         context.strokeRect(selections[item].x, selections[item].y, selections[item].w, selections[item].h);
         // rects.append(selections[item].label);
-        console.log("draw selection" & selections[item].label & selections[item].x);
+        // console.log("draw selection" & selections[item].label & selections[item].x);
     }
 }
 
@@ -119,7 +119,7 @@ function stop(event){
         // context.stroke();
         context.drawImage(image, 0, 0, canvas.height, canvas.width);
         is_drawing = false;
-        console.log("stopped");
+        // console.log("stopped");
         // create a new label to draw
         x = context.startX ;
         y = context.startY ;
@@ -136,14 +136,6 @@ function stop(event){
     // event.preventDefault();
 }
 
-var sel = document.getElementById('labels');
-for(var i = 0; i < label_array.length; i++) {
-    var opt = document.createElement('option');
-    opt.innerHTML = label_array[i];
-    opt.value = label_array[i];
-    sel.append(opt);
-}
-
 function remove_item(event){
     // get currently selected item
 
@@ -153,19 +145,3 @@ function remove_item(event){
     update_options();
 }
 
-$.ajax({
-    type: 'GET',
-    url: 'http://0.0.0.0:2222/labels',
-    // data: '',
-    success: function(label_data) {
-    console.log('POSTING:' + pathId);
-    labels.empty();
-    $.each(label_data, function(i, device) {
-        labels.append('<option>' + device + '</option>')
-    });
-
-    },
-    error: function(){
-    console.log('error occurred sending' + 'command');
-    }
-})
