@@ -6,34 +6,24 @@ body {
     margin: 0px;
     padding: 30px;
     font-family: "Mukta";
-    overflow: hidden;
+    /* overflow: hidden; */
     background: #f5f5f5;
+    display: grid;
+    grid-template: 
+    "header header header header"
+    "content content content content"
+    "... tools tools ..."
+    "footer footer footer footer";
+}
+
+header {
+    grid-area: header;
 }
 
 canvas {
+    grid-area: content;
     box-shadow: -3px 2px 9px 6px black;
     cursor: pointer;
-}
-
-.tools {
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    margin-top: 15px;
-}
-
-.tools .color-field {
-    height: 40px;
-    width: 40px;
-    min-height: 40px;
-    min-width: 40px;
-    cursor: pointer;
-    display: inline-block;
-    box-sizing: border-box;
-    border-radius: 50%;
-    border: 2px solid white;
-    align-self: center;
-    margin: 0 15px;
 }
 
 .tools .button {
@@ -65,3 +55,10 @@ height: 50px;
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
+.tools {
+    cursor: pointer;
+    background-color: rgb(233, 233, 233);
+    grid-area: tools;
+}
+  
