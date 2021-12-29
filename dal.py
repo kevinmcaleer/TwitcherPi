@@ -9,14 +9,31 @@ db = client.twitcherpi
 class ImageDocument():
     __image = BytesIO
     __captured_date = ""
+    __author = ""
 
     def __init__(self):
         now = datetime.now()
         self.__captured_date = now.isoformat()
 
+    @property
+    def author(self):
+        return self.__author
+    
+    @author.setter
+    def author(self, value):
+        self.__author = value
+
+    @property
+    def capture_date(self):
+        return self.__captured_date
+
+    @capture_date.setter
+    def capture_date(self, value):
+        self.__captured_date = value
+
     def save_image(self, image):
         self.__image = image
-        db.images.insert_one({"date":self.__captured_date, "image":base64.b64encode(self.__image.getbuffer()), "author":"Kevin"})
+        db.images.insert_one({"date":self.__captured_date, "image":base64.b64encode(self.__image.getbuffer()), "author":self.__author})
 
 
     def seed_database(self):
@@ -34,3 +51,9 @@ class ImageDocument():
         # data = db.labels.find()
         print("there be labels here!:", data)
         return data
+
+    def get_one(self):
+        """ Get one image file record """
+
+        image_file = list(db.images.find())
+        return image_file

@@ -29,15 +29,20 @@ canvas {
     cursor: pointer;
 }
 
-.tools .button {
-    align-self: center;
+.content {
+    grid-area: content;
+}
+
+.tools {
+    grid-area: content;
+    /* align-self: center;
     width: 100px;
-    height: 40px;
+    height: 40px; */
     /* border: 2px solid white; */
     /* color: white; */
     /* background-color: #222; */
-    font-weight: bold;
-    margin: 0 15px;
+    /* font-weight: bold;
+    margin: 0 15px; */
 }
 
 .color-field {
@@ -52,6 +57,7 @@ height: 50px;
 }
 
 .details {
+    grid-area: content;
     background-color: white;
     padding: 5px;
     padding-left: 20px;
