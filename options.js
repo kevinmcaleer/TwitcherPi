@@ -12,7 +12,8 @@ $(function(){
             // set the default value to the first option
             // var temp="a";
             // $("#labels").val(temp);
-            $("#labels").selectedIndex=1;
+            $("#labels").selectedIndex=0;
+            // $("#labels")[labels.selectedIndex].selected = 'selected';
         }
     });
 })

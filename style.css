@@ -22,7 +22,10 @@ header {
 
 canvas {
     grid-area: content;
-    box-shadow: -3px 2px 9px 6px black;
+    /* box-shadow: -3px 2px 9px 6px black; */
+    border: 1px solid black;
+    /* color: white;
+    background-color: white; */
     cursor: pointer;
 }
 
@@ -54,6 +57,8 @@ height: 50px;
     padding-left: 20px;
     margin-top: 20px;
     margin-bottom: 20px;
+    position: relative;
+    top: 400px;
 }
 
 .tools {
@@ -61,4 +66,8 @@ height: 50px;
     background-color: rgb(233, 233, 233);
     grid-area: tools;
 }
-  
+
+.dropdowns {
+    position: relative;
+    top: 400px;
+}
