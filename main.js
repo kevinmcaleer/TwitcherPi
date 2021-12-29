@@ -113,6 +113,7 @@ function draw_selection(selections) {
     //  draw all the rectangles in the selection array and add text label
     // update_options();
     
+    silk.clearRect(0,0,silklayer.width, silklayer.height);
     for (let i in selections) {
         silk.fillStyle = draw_color;
         silk.strokeStyle = draw_color;
@@ -134,7 +135,7 @@ function draw(event){
         // context.drawImage(image, 0, 0, canvas.height, canvas.width);
         
         // draw all the rectangles
-        // silk.fillStyle = "rgba(255, 255, 0, 1";
+   
         
         silk.clearRect(x,y,silklayer.width, silklayer.height);
         draw_selection(selections);
