@@ -23,9 +23,9 @@ def take_picture():
 def save_image(image):
     #  Save an inage to the Database
 
-    image_document.save_image(image)
     image_document.capture_date = str(datetime.now().isoformat)
     image_document.author = "Kevin McAleer"
+    image_document.save_image(image)
 
 img = take_picture()
 
