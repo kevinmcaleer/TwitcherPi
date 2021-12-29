@@ -7,7 +7,6 @@ from io import BytesIO
 from picamera import PiCamera
 from dal import ImageDocument
 from datetime import datetime
-from PIL import Image
 
 image_document = ImageDocument()
 
@@ -19,7 +18,7 @@ def take_picture():
 
     image = BytesIO()
     camera.capture(image, 'jpeg')
-    
+    camera.capture('test.jpg')
     return image
 
 def save_image(image):
@@ -32,6 +31,3 @@ def save_image(image):
 img = take_picture()
 
 save_image(img)
-image = Image.open("test.jpg")
-byte_io = BytesIO()
-image.save(byte_io, 'jpeg')
