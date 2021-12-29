@@ -32,6 +32,6 @@ def save_image(image):
 img = take_picture()
 
 save_image(img)
-image = Image.Open("test.jpg")
+image = Image.open("test.jpg")
 byte_io = BytesIO()
 image.save(byte_io, 'jpeg')
