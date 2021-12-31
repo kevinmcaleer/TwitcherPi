@@ -70,7 +70,9 @@ class ImageDocument():
         print("id type is:", type(id))
         objInstance = ObjectId(id)
         image_file = db.images.find_one({"_id": objInstance})
-        img = BSON(image_file['image']).decode()
+        img = BytesIO(image_file['data'])
+        # img = BSON(image_file['image']).decode()
+        # pil_img = Image.open(io.BytesIO(image['data']))
         
         return img
 
