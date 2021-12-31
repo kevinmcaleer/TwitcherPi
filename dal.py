@@ -34,9 +34,7 @@ class ImageDocument():
 
     def save_image(self, image:BytesIO):
         self.__image = image.getvalue
-        myimage = {
-            'data': image.getvalue()
-        }
+        myimage = image.getvalue()
         image_id = db.images.insert_one({"date":self.__captured_date, "image":myimage, "author":self.__author})
         # db.images.insert_one({"date":self.__captured_date, "image":base64.b64encode(self.__image.getbuffer()), "author":self.__author})
         
@@ -70,7 +68,7 @@ class ImageDocument():
         print("id type is:", type(id))
         objInstance = ObjectId(id)
         image_file = db.images.find_one({"_id": objInstance})
-        img = BytesIO(image_file['data'])
+        img = BytesIO(image_file['image'])
         # img = BSON(image_file['image']).decode()
         # pil_img = Image.open(io.BytesIO(image['data']))
         
