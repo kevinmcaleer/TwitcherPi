@@ -2,6 +2,7 @@ from pymongo import MongoClient
 import base64
 from io import BytesIO
 from datetime import datetime
+from bson import ObjectId, BSON
 
 client = MongoClient('mongodb://192.168.1.226')
 db = client.twitcherpi
@@ -31,9 +32,12 @@ class ImageDocument():
     def capture_date(self, value):
         self.__captured_date = value
 
-    def save_image(self, image):
-        self.__image = image
-        db.images.insert_one({"date":self.__captured_date, "image":base64.b64encode(self.__image.getbuffer()), "author":self.__author})
+    def save_image(self, image:BytesIO):
+        self.__image = image.getbuffer()
+        img = BSON()
+        img.encode(self.__image)
+        # db.images.insert_one({"date":self.__captured_date, "image":base64.b64encode(self.__image.getbuffer()), "author":self.__author})
+        db.images.insert_one({"date":self.__captured_date, "image":img, "author":self.__author})
 
 
     def seed_database(self):
@@ -57,3 +61,17 @@ class ImageDocument():
 
         image_file = list(db.images.find())
         return image_file
+
+    def get_by_id(self, id):
+        """ Get image by ID """
+        print("id is:", id)
+        print("id type is:", type(id))
+        objInstance = ObjectId(id)
+        image_file = db.images.find_one({"_id": objInstance})
+        img = BSON(image_file['image']).decode()
+        
+        return img
+
+    def get_ids(self):
+        id_list = [str(id) for id in db.images.find().distinct('_id')]
+        return id_list
