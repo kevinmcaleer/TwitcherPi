@@ -33,7 +33,7 @@ class ImageDocument():
         self.__captured_date = value
 
     def save_image(self, image:BytesIO):
-        self.__image = image.getbuffer()
+        self.__image = image.getbuffer().nbytes
         img = BSON()
         img.encode(self.__image)
         # db.images.insert_one({"date":self.__captured_date, "image":base64.b64encode(self.__image.getbuffer()), "author":self.__author})
