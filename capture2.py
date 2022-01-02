@@ -10,8 +10,9 @@ camera.resolution = (1024, 768)
 
 def take_picture():
     image = BytesIO
-    camera.capture(image, 'jpeg')
     camera.capture('test2.jpg')
+    # camera.capture(image, 'jpeg')
+    
     return image
 
 def save_image(image):
