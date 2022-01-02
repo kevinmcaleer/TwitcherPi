@@ -1,8 +1,8 @@
 from pymongo import MongoClient
-import base64
 from io import BytesIO
 from datetime import datetime
-from bson import ObjectId, BSON
+from bson import ObjectId
+from PIL.Image import Image
 
 client = MongoClient('mongodb://192.168.1.226')
 db = client.twitcherpi
@@ -38,16 +38,13 @@ class ImageDocument():
         image_id = db.images.insert_one({"date":self.__captured_date, "image":myimage, "author":self.__author})
         # db.images.insert_one({"date":self.__captured_date, "image":base64.b64encode(self.__image.getbuffer()), "author":self.__author})
         
-
-
     def seed_database(self):
         """ Seeds the database with a default set of values """
-        labels = ["sparrow","blackbird","robin","starling","wood pigeon","great tit","blue tit","crow"]
+        labels = ["House Sparrow", "Starling","Blue tit","Blackbird","Woodpigeon","Goldfinch","Great tit","Robin","Long-tailed tit","Chaffinch"]
 
         for label in labels:
             db.labels.insert_one({"label":label})
     
-
     def get_labels(self):
         """ Return a list of labels """
 
@@ -68,8 +65,9 @@ class ImageDocument():
         print("id type is:", type(id))
         objInstance = ObjectId(id)
         image_file = db.images.find_one({"_id": objInstance})
+        img = Image.frombytes(data=image_file, decoder_name='jpeg')
         # img = BytesIO(image_file['image'])
-        img = image_file['image']
+        # img = BytesIO(image_file['image']).getvalue()
         # img = BSON(image_file['image']).decode()
         # pil_img = Image.open(io.BytesIO(image['data']))
         
