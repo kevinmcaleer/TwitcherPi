@@ -21,11 +21,14 @@ def take_picture():
     camera.capture('test.jpg')
     camera.capture(image, 'jpeg')
     
-    rawIO = image
-    rawIO.seek(0)
-    byteImg = Image.open(rawIO)
+    im = image
 
-    return byteImg
+    image_bytes = BytesIO()
+    im.save(image_bytes, format='JPEG')
+
+    image = {
+        'data': image_bytes.getvalue()
+    }
 
 def save_image(image):
     #  Save an image to the Database

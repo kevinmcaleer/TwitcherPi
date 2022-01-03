@@ -66,12 +66,8 @@ class ImageDocument():
         print("id type is:", type(id))
         objInstance = ObjectId(id)
         image_file = db.images.find_one({"_id": objInstance})
-        img = Image.frombytes(data=image_file, decoder_name='jpeg')
-        # img = BytesIO(image_file['image'])
-        # img = BytesIO(image_file['image']).getvalue()
-        # img = BSON(image_file['image']).decode()
-        # pil_img = Image.open(io.BytesIO(image['data']))
-        
+
+        img = Image.open(io.BytesIO(image_file['data']))
         return img
 
     def get_ids(self):
