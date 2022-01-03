@@ -7,6 +7,7 @@ from io import BytesIO
 from picamera import PiCamera
 from dal import ImageDocument
 from datetime import datetime
+from PIL import Image
 
 image_document = ImageDocument()
 
@@ -20,7 +21,11 @@ def take_picture():
     camera.capture('test.jpg')
     camera.capture(image, 'jpeg')
     
-    return image
+    rawIO = image
+    rawIO.seek(0)
+    byteImg = Image.open(rawIO)
+
+    return byteImg
 
 def save_image(image):
     #  Save an image to the Database
