@@ -32,9 +32,9 @@ class ImageDocument():
     def capture_date(self, value):
         self.__captured_date = value
 
-    def save_image(self, image:BytesIO):
-        self.__image = image.getvalue()
-        myimage = image.getvalue()
+    def save_image(self, image):
+        # self.__image = image.getvalue()
+        # myimage = image.getvalue()
         image_id = db.images.insert_one({"date":self.__captured_date, "image":myimage, "author":self.__author})
         # db.images.insert_one({"date":self.__captured_date, "image":base64.b64encode(self.__image.getbuffer()), "author":self.__author})
         
