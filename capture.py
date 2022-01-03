@@ -17,8 +17,9 @@ def take_picture():
     #  Take a picture
 
     image = BytesIO()
-    camera.capture(image, 'jpeg')
     camera.capture('test.jpg')
+    camera.capture(image, 'jpeg')
+    
     return image
 
 def save_image(image):
