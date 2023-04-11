@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  redis:
+    build: .
+    image: redis-pi
+    container_name: redis-pi
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data/redis
+
+volumes:
+  redis_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: data
+      o: bind

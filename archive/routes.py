@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, session, redirect, url_for
-from models import db, User
-from forms import SignupForm, LoginForm
+from archive.models import db, User
+from archive.forms import SignupForm, LoginForm
 
 app = Flask(__name__)
 

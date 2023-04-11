@@ -1,0 +1,17 @@
+# Use the Redis 6.2 base image for ARM32v6 architecture
+FROM arm32v7/redis:6.2
+
+# Set the working directory
+WORKDIR /data
+
+# Expose the default Redis port
+EXPOSE 6379
+
+# Create a directory for Redis data
+RUN mkdir -p /data/redis
+
+# Set the Redis configuration file
+COPY redis.conf /usr/local/etc/redis/redis.conf
+
+# Run the Redis server with the provided configuration file
+CMD [ "redis-server", "/usr/local/etc/redis/redis.conf" ]
